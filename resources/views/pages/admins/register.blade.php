@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register user</title>
+    <title>Register admin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
     <style>
@@ -45,7 +45,7 @@
                             <strong>{{ Session::get('msg') }}</strong>
                           </div>
                         @endif
-                        <form action="{{route('register_user')}}" method="POST">
+                        <form action="{{route('register_admin')}}" method="POST">
                             @csrf
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="name" id="floatingInput" placeholder="name">

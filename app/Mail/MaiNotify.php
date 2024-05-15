@@ -43,7 +43,7 @@ class MaiNotify extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.sendMail',
+            view: 'templates.emails.sendMail',
             with: [
                 'data' => $this->data,
             ],

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register user</title>
+    <title>Login admin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
     <style>
@@ -28,7 +28,6 @@
             color: white !important;
             background-color: #3b5998;
         }
-
     </style>
 </head>
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
@@ -39,18 +38,9 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5">
-                        <h5 class="card-title text-center mb-5 fw-light fs-5">Sign Up</h5>
-                        @if(Session::has('msg'))
-                        <div class="alert alert-success">
-                            <strong>{{ Session::get('msg') }}</strong>
-                          </div>
-                        @endif
-                        <form action="{{route('register_user')}}" method="POST">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+                        <form action="{{route('login_admin')}}" method="POST">
                             @csrf
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" id="floatingInput" placeholder="name">
-                                <label for="floatingInput">Name</label>
-                            </div>
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com">
                                 <label for="floatingInput">Email address</label>
@@ -59,7 +49,6 @@
                                 <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
                                 <label for="floatingPassword">Password</label>
                             </div>
-                            
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -76,9 +65,20 @@
                                 </label>
                             </div> --}}
                             <div class="d-grid">
-                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Register</button>
+                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
+                                    in</button>
                             </div>
-                            
+                            <hr class="my-4">
+                            <div class="d-grid mb-2">
+                                <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
+                                    <i class="fab fa-google me-2"></i> Sign in with Google
+                                </button>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
+                                    <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

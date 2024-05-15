@@ -13,21 +13,20 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $validation = $request->validate([
-            'name' => ['required'],
             'email' => ['required', 'max:255'],
             'password' => ['required'],
         ]);
 
 
         $user = [
-            "name" => $request->name,
             "email" => $request->email,
             "password" => $request->password
         ];
 
         if (!Auth::attempt($user)) {
-            return redirect()->route("login");
+            return redirect()->route("home-page")->with('msg', 'Login user successful');
         }
+        
     }
 
     public function register(Request $request)
@@ -54,6 +53,6 @@ class UserController extends Controller
             Mail::to($user['email'])->send(new MaiNotify($user));
         }
 
-        return back()->with('msg', 'Register successful');
+        return back()->with('msg', 'Register user successful');
     }
 }

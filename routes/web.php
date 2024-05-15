@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('register');
+    return view('index');
+})->name('home-page');
+
+Route::get('/user/login', function () {
+    return view('/pages/users/login');
 });
 
-Route::post("/user/login", [UserController::class, 'login'])->name('login');
-Route::post("/user/register", [UserController::class, 'register'])->name('register');
+Route::get('/user/register', function () {
+    return view('/pages/users/register');
+});
+
+
+Route::post("/user/login", [UserController::class, 'login'])->name('login_user');
+Route::post("/user/register", [UserController::class, 'register'])->name('register_user');
+
+Route::get('/admin/login', function () {
+    return view('/pages/admins/login');
+});
+
+Route::get('/admin/register', function () {
+    return view('/pages/admins/register');
+});
+
+
+Route::post("/admin/login", [AdminController::class, 'login'])->name('login_admin');
+Route::post("/admin/register", [AdminController::class, 'register'])->name('register_admin');

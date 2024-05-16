@@ -18,18 +18,25 @@
         <li class="nav-item">
           <a class="nav-link active" href="#">Home page</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/user/login">Login user</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/user/register">Register user</a>
-        </li>
-        <li class="nav-item">
+          @auth
+          <li class="nav-item">
+            <a class="nav-link" href="/user/logout">Logout</a>
+          </li>
+          @endauth
+          @guest
+          <li class="nav-item">
+            <a class="nav-link" href="/user/login">Login user</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/register">Register user</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/admin/login">Login admin</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/admin/register">Register admin</a>
           </li>
+          @endguest
       </ul>
 </body>
 </html>

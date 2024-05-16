@@ -10,6 +10,14 @@ use App\Mail\MaiNotify;
 
 class UserController extends Controller
 {
+    public function showLoginForm() {
+        return view('pages.users.login');
+    }
+
+    public function showRegisterForm() {
+        return view('pages.users.register');
+    }
+
     public function login(Request $request)
     {
         $validation = $request->validate([
@@ -20,10 +28,12 @@ class UserController extends Controller
 
         $user = [
             "email" => $request->email,
-            "password" => $request->password
+            "password" => $request->password, 
         ];
 
         if (!Auth::attempt($user)) {
+            return redirect()->route("home-page")->with('msg', 'Login user fail');
+        }else{
             return redirect()->route("home-page")->with('msg', 'Login user successful');
         }
         
@@ -41,18 +51,30 @@ class UserController extends Controller
         $user = [
             "name" => $request->name,
             "email" => $request->email,
-            "password" => $request->password
+            "password" => bcrypt($request->password)
         ];
 
         $isSuccess = User::create($user);
 
         if(empty($isSuccess)){
-            echo "Đăng ký thất bại";
+            echo "Register fail";
         }else{
-            echo "Đăng ký thành công";
+            echo "Register success";
             Mail::to($user['email'])->send(new MaiNotify($user));
         }
 
-        return back()->with('msg', 'Register user successful');
+        return redirect()->route('login-form')->with('msg', 'Register user successful');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        // Invalidate the session
+        $request->session()->invalidate();
+
+        // Regenerate the session token to prevent CSRF attacks
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

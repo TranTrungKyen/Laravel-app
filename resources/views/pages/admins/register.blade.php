@@ -48,12 +48,16 @@
                         <form action="{{route('register_admin')}}" method="POST">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" id="floatingInput" placeholder="name">
-                                <label for="floatingInput">Name</label>
+                                <input type="text" class="form-control" name="role" id="role" placeholder="Role">
+                                <label for="role">Role</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="name">
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+                                <label for="email">Email address</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">

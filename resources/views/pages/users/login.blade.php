@@ -39,6 +39,11 @@
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5">
                         <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+                        @if(Session::has('msg'))
+                        <div class="alert alert-success">
+                            <strong>{{ Session::get('msg') }}</strong>
+                          </div>
+                        @endif
                         <form action="{{route('login_user')}}" method="POST">
                             @csrf
                             <div class="form-floating mb-3">

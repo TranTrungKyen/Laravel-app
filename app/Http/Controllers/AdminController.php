@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MaiNotify;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
@@ -70,6 +71,9 @@ class AdminController extends Controller
     }
 
     public function create(){
+        if (! Gate::allows('update-user', Auth::guard("admins")->user())) {
+            abort(403);
+        }
         return view('pages.admins.create');
     }
 
@@ -77,9 +81,15 @@ class AdminController extends Controller
         return view('pages.admins.details');
     }
     public function update(){
+        if (! Gate::allows('update-user', Auth::guard("admins")->user())) {
+            abort(403);
+        }
         return view('pages.admins.update');
     }
     public function delete(){
+        if (! Gate::allows('update-user', Auth::guard("admins")->user())) {
+            abort(403);
+        }
         return view('pages.admins.delete');
     }
     public function logout(Request $request){

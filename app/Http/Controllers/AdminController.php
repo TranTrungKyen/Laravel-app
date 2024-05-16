@@ -69,6 +69,19 @@ class AdminController extends Controller
         return view('pages.admins.listUser');
     }
 
+    public function create(){
+        return view('pages.admins.create');
+    }
+
+    public function details(){
+        return view('pages.admins.details');
+    }
+    public function update(){
+        return view('pages.admins.update');
+    }
+    public function delete(){
+        return view('pages.admins.delete');
+    }
     public function logout(Request $request){
         Auth::guard('admins')->logout();
 

@@ -30,7 +30,15 @@ Route::post("/user/register", [UserController::class, 'register'])->name('regist
 
 
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('login-admin-form');
-Route::get('/admin/list', [AdminController::class, 'displayListUser'])->name('list-user');
+Route::middleware(["permiss"])->group(function() {
+    Route::middleware(["permissAdmins"])->group(function(){
+        Route::get('/admin/create', [AdminController::class, 'create'])->name('create-user');
+        Route::get('/admin/update', [AdminController::class, 'update'])->name('update-user');
+        Route::get('/admin/delete', [AdminController::class, 'delete'])->name('delete-user');
+    });
+    Route::get('/admin/detail', [AdminController::class, 'details'])->name('detail-user');
+    Route::get('/admin/list', [AdminController::class, 'displayListUser'])->name('list-user');
+});
 Route::get('/admin/register', [AdminController::class, 'showRegisterForm'])->name('register-admin-form');
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout-admin');
 
